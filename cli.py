@@ -1,17 +1,19 @@
 import argparse
 from github_fetcher import get_pr_diff, get_pr_files, get_file_content, get_default_branch
+from llm_client import generate_summary
 
 def main():
     parser = argparse.ArgumentParser(description="Fetch GitHub PR diff and file contents")
     parser.add_argument("--repo", required=True, help="仓库名，格式 owner/repo")
     parser.add_argument("--pr", type=int, required=True, help="PR 编号")
+    parser.add_argument("--provider", default="openai", choices=["openai", "anthropic"], help="LLM 提供商")
     args = parser.parse_args()
 
     owner, repo = args.repo.split("/")
 
     print(f" 正在获取 PR #{args.pr} 的变更...\n")
 
-        # 动态获取仓库默认分支
+    # 动态获取仓库默认分支
     try:
         default_branch = get_default_branch(owner, repo)
         print(f"ℹ️  仓库默认分支: {default_branch}\n")
@@ -19,7 +21,7 @@ def main():
         print(f"⚠️ 无法获取默认分支，将使用 main: {e}")
         default_branch = "main"
         
-    # 1. 获取 diff
+    # 获取 diff
     try:
         diff = get_pr_diff(owner, repo, args.pr)
         print("=" * 60)
@@ -31,8 +33,18 @@ def main():
     except Exception as e:
         print(f" 获取 diff 失败: {e}")
         return
+    
+    # 生成 LLM 摘要
+    print("\n" + "=" * 60)
+    print("AI 变更摘要")
+    print("=" * 60)
+    try:
+        summary = generate_summary(diff, provider=args.provider)
+        print(summary)
+    except Exception as e:
+        print(f"生成摘要失败: {e}")
 
-    # 2. 获取修改过的文件列表及内容
+    # 获取修改过的文件列表及内容
     try:
         files = get_pr_files(owner, repo, args.pr)
         print("\n" + "=" * 60)
