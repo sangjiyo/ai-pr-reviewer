@@ -41,3 +41,10 @@ def get_file_content(owner, repo, file_path, ref="main"):
     if content_b64:
         return base64.b64decode(content_b64).decode("utf-8", errors="replace")
     return ""
+
+def get_default_branch(owner, repo):
+    """获取仓库的默认分支名称"""
+    url = f"{BASE_URL}/repos/{owner}/{repo}"
+    resp = requests.get(url, headers=HEADERS)
+    resp.raise_for_status()
+    return resp.json().get("default_branch", "main")
