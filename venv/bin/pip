@@ -1,4 +1,4 @@
-#!/learn/ai-pr-reviewer/venv/bin/python3
+#!/learn/ai-pr-reviewer/venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
