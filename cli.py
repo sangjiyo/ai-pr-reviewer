@@ -1,5 +1,5 @@
 import argparse
-from github_fetcher import get_pr_diff, get_pr_files, get_file_content
+from github_fetcher import get_pr_diff, get_pr_files, get_file_content, get_default_branch
 
 def main():
     parser = argparse.ArgumentParser(description="Fetch GitHub PR diff and file contents")
@@ -11,6 +11,14 @@ def main():
 
     print(f" 正在获取 PR #{args.pr} 的变更...\n")
 
+        # 动态获取仓库默认分支
+    try:
+        default_branch = get_default_branch(owner, repo)
+        print(f"ℹ️  仓库默认分支: {default_branch}\n")
+    except Exception as e:
+        print(f"⚠️ 无法获取默认分支，将使用 main: {e}")
+        default_branch = "main"
+        
     # 1. 获取 diff
     try:
         diff = get_pr_diff(owner, repo, args.pr)
@@ -42,7 +50,7 @@ def main():
             if f['status'] == 'removed':
                 continue
             # 从 PR 的 base 分支获取内容（通常是 main）
-            content = get_file_content(owner, repo, filename, ref="main")
+            content = get_file_content(owner, repo, filename, ref=default_branch)
             print(f"\n--- {filename} ---")
             print(content[:2000] if content else "(无法获取内容)")
             if content and len(content) > 2000:
