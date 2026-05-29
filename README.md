@@ -1,4 +1,4 @@
-# ������ AI PR Review 助手
+# 🤖 AI PR Review 助手
 
 > 基于大语言模型的 Pull Request 智能审查工具，自动生成变更摘要、识别潜在风险并给出修改建议，帮助开发者提升 Code Review 效率与质量。
 
@@ -12,21 +12,21 @@
 - **多模型支持** —— 同时兼容 OpenAI、Anthropic、MiniMax 等主流 LLM，并预留便捷的自定义扩展接口。
 - **灵活的命令行工具** —— 仅需一条命令即可完成全部分析，结果清晰可读，支持 diff 与文件内容预览。
 
-## ������ 效果预览
+## 📸 效果预览
 
 ```bash
 $ python cli.py --repo octocat/Hello-World --pr 32 --provider openai
 
-������ 正在获取 PR #32 的变更...
+🔍 正在获取 PR #32 的变更...
 
 ============================================================
-������ PR DIFF
+📄 PR DIFF
 ============================================================
 diff --git a/README b/README
 ...
 
 ============================================================
-������ AI 变更摘要
+🤖 AI 变更摘要
 ============================================================
 本次 PR 修改了 README 文件，在原有 "Hello World!" 后新增一行 "Hello Earthlings!"，属于文档内容的简单扩展，不影响功能或 API。
 
@@ -36,13 +36,13 @@ diff --git a/README b/README
 ✅ 未发现显著风险
 
 ============================================================
-������ 修改文件列表 (1 个文件)
+📁 修改文件列表 (1 个文件)
 ============================================================
 modified | README (变化行数: +1 -0)
 ...
 ```
 
-## ������ 快速开始
+## 🚀 快速开始
 
 ### 1. 克隆仓库
 
@@ -94,7 +94,7 @@ python cli.py --repo python/cpython --pr 105000 --provider openai
 python cli.py --repo pytorch/pytorch --pr 80000 --provider anthropic
 ```
 
-## ������ 使用说明
+## 📖 使用说明
 
 | 参数         | 说明                                                       | 必填 | 可选值                     |
 | ------------ | ---------------------------------------------------------- | ---- | -------------------------- |
@@ -104,7 +104,7 @@ python cli.py --repo pytorch/pytorch --pr 80000 --provider anthropic
 
 工具将依次输出： **AI 变更摘要** → **风险代码识别报告** → **修改文件列表**。
 
-## ������ 设计思路
+## 🧠 设计思路
 
 ### 1. 模型选择
 
@@ -133,7 +133,7 @@ python cli.py --repo pytorch/pytorch --pr 80000 --provider anthropic
 - **流式输出（计划支持）**：未来将支持实时打印 AI 思考过程，提升交互感。
 - **集成友好**：目前以 CLI 为主，但代码模块化分离（`github_fetcher`、`llm_client`），可轻松嵌入 CI/CD 流程或构建 GitHub App，直接向 PR 添加评论。
 
-## ������ 未来扩展方向
+## 🔭 未来扩展方向
 
 - **跨平台支持**：抽象 Git 平台接口，支持 GitLab、Gitee 等。
 - **深度 CI/CD 集成**：作为 GitHub Action 或 Jenkins 插件，在合入前自动审查并卡点。
@@ -142,7 +142,7 @@ python cli.py --repo pytorch/pytorch --pr 80000 --provider anthropic
 - **IDE 实时提示**：开发 IDE 插件，在本地编写代码时即时预警，将问题消灭在提交前。
 - **多模态支持**：未来可解析 PR 中附带的 UI 截图，辅助前端变更审查。
 
-## ������ 项目结构
+## 📁 项目结构
 
 ```
 .
@@ -155,7 +155,7 @@ python cli.py --repo pytorch/pytorch --pr 80000 --provider anthropic
 └── README.md               # 项目文档
 ```
 
-## ������ 依赖清单
+## 🔧 依赖清单
 
 所有依赖已在 `requirements.txt` 中声明，核心三方库如下：
 
@@ -166,7 +166,7 @@ python cli.py --repo pytorch/pytorch --pr 80000 --provider anthropic
 | `openai`        | OpenAI / MiniMax SDK 调用   | Apache 2.0  |
 | `anthropic`     | Anthropic Claude SDK 调用   | MIT         |
 
-## ������ 贡献与 PR 规范
+## 🤝 贡献与 PR 规范
 
 本项目遵循“一个 PR 只做一件事”原则，所有功能通过小粒度、独立 PR 逐步合入。  
 提交 PR 时请确保：
@@ -177,7 +177,7 @@ python cli.py --repo pytorch/pytorch --pr 80000 --provider anthropic
 
 欢迎提交 Issue 或 PR 共同改进！
 
-## ������ 开源协议
+## 📜 开源协议
 ```
 注意事项：
 
