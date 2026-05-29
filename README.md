@@ -1,9 +1,11 @@
 # 🤖 AI PR Review 助手
 
-> 基于大语言模型的 Pull Request 智能审查工具，自动生成变更摘要、识别潜在风险并给出修改建议，帮助开发者提升 Code Review 效率与质量。
+> 基于大语言模型的 Pull Request 智能审查工具，自动生成变更摘要、识别潜在风险并给出修改建议，帮助开发者提升 Code Review 效率与质量。  
+> [Demo演示视频](https://www.bilibili.com/video/BV1pdVa6wEvY/)
 
 [![Python 3.8+](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 
 ## ✨ 核心功能
 
