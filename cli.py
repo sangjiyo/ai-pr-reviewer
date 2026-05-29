@@ -1,12 +1,12 @@
 import argparse
 from github_fetcher import get_pr_diff, get_pr_files, get_file_content, get_default_branch
-from llm_client import generate_summary
+from llm_client import generate_summary, SUPPORTED_PROVIDERS
 
 def main():
     parser = argparse.ArgumentParser(description="Fetch GitHub PR diff and file contents")
     parser.add_argument("--repo", required=True, help="仓库名，格式 owner/repo")
     parser.add_argument("--pr", type=int, required=True, help="PR 编号")
-    parser.add_argument("--provider", default="openai", choices=["openai", "anthropic"], help="LLM 提供商")
+    parser.add_argument("--provider", default="openai", choices=SUPPORTED_PROVIDERS, help="选择LLM 提供商")
     args = parser.parse_args()
 
     owner, repo = args.repo.split("/")
