@@ -24,3 +24,18 @@
    _PROVIDER_FUNCTIONS["my_model"] = _get_my_model_summary
 3. 在 .env 中添加对应的 API Key，并在 key_env_map 中关联。
 4. 重新运行脚本时使用 --provider my_model 即可。
+
+## 功能
+
+- PR 变更摘要：用自然语言概述本次 PR 改了什么。
+- 风险代码识别：自动检测安全漏洞、逻辑错误、性能陷阱等，并按严重度分级给出修改建议。
+- 修改文件列表：展示所有变更文件及修改行数。
+
+## 使用
+   bash
+   python cli.py --repo owner/repo --pr 123 --provider openai
+工具将依次输出：
+1. AI 变更摘要
+2. 风险识别报告（高/中/低严重度）
+3. 修改文件列表
+如果 PR 很简单，可能返回“未发现显著风险”，这也是正常的。
